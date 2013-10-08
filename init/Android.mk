@@ -10,6 +10,7 @@ LOCAL_SRC_FILES:= \
 	property_service.c \
 	util.c \
 	parser.c \
+	logo.c \
 	keychords.c \
 	signal_handler.c \
 	init_parser.c \
@@ -26,9 +27,8 @@ ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 LOCAL_CFLAGS += -DALLOW_LOCAL_PROP_OVERRIDE=1
 endif
 
-ifneq ($(TARGET_NO_INITLOGO),true)
-LOCAL_SRC_FILES += logo.c
-LOCAL_CFLAGS    += -DINITLOGO
+ifeq ($(TARGET_NO_INITLOGO),true)
+LOCAL_CFLAGS += -DNO_INITLOGO
 endif
 
 ifneq ($(TARGET_NR_SVC_SUPP_GIDS),)

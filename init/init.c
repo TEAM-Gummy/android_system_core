@@ -46,10 +46,6 @@
 
 #include <sys/system_properties.h>
 
-#ifndef INITLOGO
-#include <linux/kd.h>
-#endif
-
 #include "devices.h"
 #include "init.h"
 #include "log.h"
@@ -654,7 +650,6 @@ static int console_init_action(int nargs, char **args)
         have_console = 1;
     close(fd);
 
-#ifdef INITLOGO
     if( load_565rle_image(INIT_IMAGE_FILE) ) {
         fd = open("/dev/tty0", O_WRONLY);
         if (fd >= 0) {
@@ -678,13 +673,6 @@ static int console_init_action(int nargs, char **args)
             close(fd);
         }
     }
-#else
-    fd = open("/dev/tty0", O_RDWR | O_SYNC);
-    if (fd >= 0) {
-        ioctl(fd, KDSETMODE, KD_GRAPHICS);
-        close(fd);
-    }
-#endif
     return 0;
 }
 
@@ -730,10 +718,6 @@ static void import_kernel_nv(char *name, int for_emulator)
         cnt = snprintf(prop, sizeof(prop), "ro.boot.%s", boot_prop_name);
         if (cnt < PROP_NAME_MAX)
             property_set(prop, value);
-#ifdef HAS_SEMC_BOOTLOADER
-    } else if (!strcmp(name,"serialno")) {
-        property_set("ro.boot.serialno", value);
-#endif
     }
 }
 
