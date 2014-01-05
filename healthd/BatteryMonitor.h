@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2013 The Android Open Source Project
- * Copyright (C) 2013 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,9 +36,7 @@ class BatteryMonitor {
         ANDROID_POWER_SUPPLY_TYPE_AC,
         ANDROID_POWER_SUPPLY_TYPE_USB,
         ANDROID_POWER_SUPPLY_TYPE_WIRELESS,
-        ANDROID_POWER_SUPPLY_TYPE_BATTERY,
-        ANDROID_POWER_SUPPLY_TYPE_DOCK_AC,
-        ANDROID_POWER_SUPPLY_TYPE_DOCK_BATTERY
+        ANDROID_POWER_SUPPLY_TYPE_BATTERY
     };
 
     void init(struct healthd_config *hc, bool nosvcmgr);
