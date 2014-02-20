@@ -71,11 +71,12 @@ int toMillisecondTimeoutDelay(nsecs_t referenceTime, nsecs_t timeoutTime)
     return timeoutDelayMillis;
 }
 
+
 /*
-* ===========================================================================
-* DurationTimer
-* ===========================================================================
-*/
+ * ===========================================================================
+ *      DurationTimer
+ * ===========================================================================
+ */
 
 using namespace android;
 
@@ -97,13 +98,12 @@ long long DurationTimer::durationUsecs(void) const
     return (long) subtractTimevals(&mStopWhen, &mStartWhen);
 }
 
-// Subtract two timevals. Returns the difference (ptv1-ptv2) in
+// Subtract two timevals.  Returns the difference (ptv1-ptv2) in
 // microseconds.
-/*static*/ long long DurationTimer::subtractTimevals(const struct timeval* 
-ptv1,
+/*static*/ long long DurationTimer::subtractTimevals(const struct timeval* ptv1,
     const struct timeval* ptv2)
 {
-    long long stop = ((long long) ptv1->tv_sec) * 1000000LL +
+    long long stop  = ((long long) ptv1->tv_sec) * 1000000LL +
                       ((long long) ptv1->tv_usec);
     long long start = ((long long) ptv2->tv_sec) * 1000000LL +
                       ((long long) ptv2->tv_usec);
@@ -131,3 +131,4 @@ ptv1,
     }
     ptv->tv_sec += usec / 1000000;
 }
+
